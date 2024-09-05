@@ -24,7 +24,9 @@ html {
 
 /* STYLE/GENERAL */
 
-
+a {
+    color: black !important;
+}
 
 /* App Background */
 main {
@@ -113,9 +115,7 @@ main {
     width: 100%;
 }
 
-a {
-    color: none !important;
-}
+
 
 /* Right Side */
 .right_side_container {
