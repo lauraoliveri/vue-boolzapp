@@ -219,4 +219,3 @@ createApp({
 }).mount('#app')
 
 
-if(SendMessage.includes)
