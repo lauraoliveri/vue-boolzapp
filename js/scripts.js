@@ -5,6 +5,9 @@ createApp({
     data() {
         return {
             ActiveContactIndex:0,
+            UserMessage: '',
+            SearchContact:'',
+            OkMessage:'Ok :-)',
             // Contacts 
             contacts: [
                 {
@@ -198,9 +201,22 @@ createApp({
         ClickContact (index) {
             // console.log('Il contatto è stato cliccato');
             this.ActiveContactIndex = index ;
+        },
+        SendMessage() {
+            this.contacts[this.ActiveContactIndex].messages.push({
+                date: '10/01/2020 15:30:55',
+                message: this.UserMessage,
+                status: 'sent'
+                
+            })
+        },
+        MessageReceived() {
+            setTimeout( OkMessage, 1000);
         }
+        
     }
     
 }).mount('#app')
 
 
+if(SendMessage.includes)

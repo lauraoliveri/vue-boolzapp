@@ -170,19 +170,31 @@
                                         {{ contacts[ActiveContactIndex].messages[index].date }}
                                     </div>
                                 </div>
+
                             </div>
+
                         </div>
 
-                        <!-- Bottom part wo send messages -->
+                       
+                    
+
+
+
+                        <!-- Bottom part two send messages -->
 
                         <div>
                             <nav class="navbar bg-light">
                                 <div class="container-fluid">
-                                    <form class="d-flex form_width" role="search">
+                                    <form class="d-flex form_width" role="search" @submit.prevent="SendMessage()">
+
                                         <button class="btn btn-light" type="submit">
                                             <i class="fa-regular fa-face-smile lightgrey icons"></i>
                                         </button>
-                                        <input class="form-control write_message_bar" type="search" placeholder="Scrivi un messaggio" aria-label="Message">
+
+                                        <input class="form-control write_message_bar" type="search" placeholder="Scrivi un messaggio" aria-label="Message"
+                                        
+                                        v-model="UserMessage">
+
                                         <button class="btn btn-light" type="submit">
                                             <i class="fa-solid fa-microphone lightgrey icons"></i>
                                         </button>
