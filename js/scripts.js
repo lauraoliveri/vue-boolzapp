@@ -4,7 +4,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            
+            ActiveContactIndex:0,
             // Contacts 
             contacts: [
                 {
@@ -192,6 +192,12 @@ createApp({
                 }
             ]
 
+        }
+    },
+    methods: {
+        ClickContact (index) {
+            // console.log('Il contatto è stato cliccato');
+            this.ActiveContactIndex = index ;
         }
     }
     

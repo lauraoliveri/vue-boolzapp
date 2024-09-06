@@ -21,11 +21,11 @@
         <main>
 
             <!-- App main container -->
-            <div class="container " id="my_container">
-                <div class="row g-0 top_bar">
+            <div class="container" id="my_container">
+                <div class="row g-0 my_row">
 
                     <!-- Left side: Profile, chats, settings -->
-                    <div class="col left_side_container">
+                    <div class="col-4 left_side_container">
 
                         <!-- Profile -->
                         <div class="d-flex justify-content-between p-2">
@@ -82,11 +82,11 @@
                         <div>
                             <nav class="navbar bg-light">
                                 <div class="container-fluid">
-                                    <form class="d-flex" role="search">
+                                    <form class="d-flex form_width" role="search">
                                         <button class="btn btn-light" type="submit">
                                             <i class="fa-solid fa-magnifying-glass lightgrey"></i>
                                         </button>
-                                        <input class="form-control search_bar" type="search" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
                                     </form>
                                 </div>
                             </nav>
@@ -96,7 +96,8 @@
                         <div class="chat_container">
 
                             <!-- Single chat -->
-                            <div class="d-flex border-top p-2 single_chat" v-for="contact in contacts">
+                            <div class="d-flex border-top p-2 single_chat" :class=" index== ActiveContactIndex ? 'active_chat' : '' " v-for="(contact, index) in contacts"
+                            @click="ClickContact(index)">
                                 <div class="icons_img_container pe-4 ps-2">
                                     <img :src="contact.avatar" alt="user-img" class="icons_img">
                                 </div>
@@ -120,7 +121,8 @@
 
                     <!-- Right side: Chat -->
                     <div class="col right_side_container">
-                        <!-- Profile -->
+
+                        <!-- Top bar -->
                         <div class="d-flex justify-content-between p-2">
 
                             <!-- Icon, name of user and last access -->
@@ -129,7 +131,8 @@
                                 <img src="img/avatar_io.jpg" alt="myaccountpic" class="my_icon_img">
                                 
                                 <div class="align-self-center">
-                                    Laura
+                                    {{ contacts[ActiveContactIndex].name }}
+
                                     <div class="smaller_text lightgrey">
                                         Ultimo accesso alle 20:20
                                     </div>
@@ -157,6 +160,37 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Messages -->
+                        <div class="chat_background p-3">
+                            <div class="message_container d-flex" :class="message.status == 'sent' ? 'sent, justify-content-end' : 'received, justify-content-start' " v-for="(message, index) in contacts[ActiveContactIndex].messages">
+                                <div :class="message.status">
+                                    {{ contacts[ActiveContactIndex].messages[index].message }}
+                                    <div class="message_time smaller_text opacity-50">
+                                        {{ contacts[ActiveContactIndex].messages[index].date }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom part wo send messages -->
+
+                        <div>
+                            <nav class="navbar bg-light">
+                                <div class="container-fluid">
+                                    <form class="d-flex form_width" role="search">
+                                        <button class="btn btn-light" type="submit">
+                                            <i class="fa-regular fa-face-smile lightgrey icons"></i>
+                                        </button>
+                                        <input class="form-control write_message_bar" type="search" placeholder="Scrivi un messaggio" aria-label="Message">
+                                        <button class="btn btn-light" type="submit">
+                                            <i class="fa-solid fa-microphone lightgrey icons"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </nav>
+                        </div>
+
                     </div>
                 </div>
             </div>   
